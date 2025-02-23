@@ -25,6 +25,7 @@ export const booksSlice = createSlice({
         updateBook: (state, action) => {
             const {id, title, author} = action.payload
            const isExists = state.books.filter((book) =>book.id === id)
+         
            if(isExists){
            isExists[0].title = title
            isExists[0].author = author
