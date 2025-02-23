@@ -1,9 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteBook } from "./BookSlice";
+import { Link } from "react-router-dom";
 
 
 const BookView = () => {
     const books = useSelector((state) => state.booksReducer.books) || []
-    console.log(books);
+    const dispatch = useDispatch()
+    const handleDeleteBook = (id) => {
+     dispatch(deleteBook(id))
+    }
     return (
         <div>
             <h2>List Of Books</h2>
@@ -18,15 +23,22 @@ const BookView = () => {
                 </thead>
                 <tbody>
                     {
-                        books && books.map((book) =>  <tr key={book.id}>
-                            <td>{book.id}</td>
-                            <td>{book.title}</td>
-                            <td>{book.author}</td>
+                        books && books.map((book, index) =>  {
+                            const {id, title, author} = book
+                            return(
+                                <tr key={index}>
+                            <td>{id}</td>
+                            <td>{title}</td>
+                            <td>{author}</td>
                             <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                               <Link to = '/edit-book' state={{id, author, title}}>
+                               <button>Edit</button>
+                               </Link>
+                                <button onClick={() => handleDeleteBook(book.id)}>Delete</button>
                             </td>
-                        </tr>)
+                        </tr>
+                            )
+                        })
                     }
                 </tbody>
             </table>

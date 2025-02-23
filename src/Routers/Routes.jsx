@@ -8,6 +8,7 @@ import BookView from "../features/books/BookView";
 import AddBook from "../features/books/AddBook";
 import '../App.css'
 import ErrorPage from "../pages/ErrorPage";
+import EditBook from "../features/books/EditBook";
  
   
 export  const router = createBrowserRouter([
@@ -27,6 +28,10 @@ export  const router = createBrowserRouter([
         {
             path: '/add-book',
             element: <AddBook></AddBook>
+        },
+        {
+            path: '/edit-book',
+            element: <EditBook></EditBook>
         }
       ]
     },

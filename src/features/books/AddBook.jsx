@@ -9,7 +9,8 @@ const AddBook = () => {
     const [author, setAuthor] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const numberOfBooks = useSelector((state) => state.bookReducer.books.length)
+    const numberOfBooks = useSelector((state) => state.booksReducer.books.length) || 0
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const book = {id: numberOfBooks + 1, title, author}
@@ -25,8 +26,10 @@ const AddBook = () => {
            <form  onSubmit={handleSubmit} className="form-field">
             <label htmlFor="title">Title:</label>
             <input type="text"  name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)}  />
-            <label htmlFor="author">Title:</label>
+            <br />
+            <label htmlFor="author">Author:</label>
             <input type="text"  name="author" id="author" value={author} onChange={(e) => setAuthor(e.target.value)}  />
+            <br />
             <button type="submit">Add Book</button>
 
            </form>
