@@ -20,7 +20,7 @@ export const booksSlice = createSlice({
             console.log(id);
             state.books = state.books.filter((book) => book.id !== id)
 
-            state.books.push(action.payload)
+            // state.books.push(action.payload)
         },
         updateBook: (state, action) => {
             const {id, title, author} = action.payload
